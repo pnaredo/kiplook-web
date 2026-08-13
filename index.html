@@ -104,11 +104,8 @@
 
   header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
   .brand { display: flex; align-items: center; gap: 14px; }
-  .mark {
-    height: 44px; padding: 0 16px; border-radius: 12px; background: var(--rose);
-    display: inline-flex; align-items: center; justify-content: center;
-    font: 700 17px/1 Quicksand, sans-serif; letter-spacing: -.02em; color: var(--white);
-  }
+  /* El icono de verdad de la app, el mismo que se verá en la App Store. */
+  .mark { width: 44px; height: 44px; border-radius: 12px; display: block; }
   .tagline { font: 600 15px Quicksand, sans-serif; color: var(--muted); }
   .nav-link { font: 600 15px Quicksand, sans-serif; color: var(--plum); }
   .nav-link:hover { color: var(--rose-deep); }
@@ -185,7 +182,7 @@
 
   <header>
     <div class="brand">
-      <div class="mark">KipLook</div>
+      <img class="mark" src="icon.png" width="44" height="44" alt="KipLook">
       <span class="tagline">the outfit calendar</span>
     </div>
     <a class="nav-link" href="#join">Join the waitlist</a>
