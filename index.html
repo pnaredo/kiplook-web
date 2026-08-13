@@ -3,30 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KipLook — keep it pretty</title>
+<title>KipLook — the outfit calendar</title>
+<meta name="description" content="One photo a day. A year of outfits you can actually look back on — even the days you stayed in.">
+
+<meta property="og:title" content="KipLook — the outfit calendar">
+<meta property="og:description" content="One photo a day. A year of outfits you can actually look back on.">
+<meta property="og:url" content="https://kiplook.com/">
+<meta property="og:image" content="https://kiplook.com/icon.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  :root { --ivory: #F7EFE9; --rose: #C96A72; --text: #3A3336; --muted: #8A7E82; }
+  :root {
+    --cream: #f7f0e8;
+    --rose: #e8b4b8;
+    --rose-deep: #b8797f;
+    --rose-hover: #dda6ab;
+    --plum: #5d4a6a;
+    --muted: #a2938c;
+    --faint: #bdb0a6;
+    --white: #fffbf7;
+    --line: #e5d9cc;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; background: var(--ivory); color: var(--text);
-         display: flex; align-items: center; justify-content: center; text-align: center;
-         font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-  main { padding: 2rem 1.5rem; }
-  h1 { font-size: 2.75rem; letter-spacing: .18em; color: var(--rose); margin: 0; font-weight: 700; }
-  .tagline { font-style: italic; color: var(--muted); margin: .35rem 0 2rem; letter-spacing: .04em; }
-  p.lead { max-width: 26rem; margin: 0 auto 2.5rem; }
-  nav a { color: var(--rose); text-decoration: none; margin: 0 .75rem; }
-  nav a:hover { text-decoration: underline; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    font-family: Quicksand, system-ui, sans-serif;
+  }
+  a { color: var(--rose-deep); text-decoration: none; }
+  a:hover { color: #8f5f63; }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 44px 56px;
+  }
+
+  header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .mark {
+    width: 44px; height: 44px; border-radius: 12px; background: var(--rose);
+    display: flex; align-items: center; justify-content: center;
+    font: 700 17px/1 Quicksand, sans-serif; letter-spacing: -.02em; color: var(--white);
+  }
+  .tagline { font: 600 15px Quicksand, sans-serif; color: var(--muted); }
+  .nav-link { font: 600 15px Quicksand, sans-serif; color: var(--plum); }
+  .nav-link:hover { color: var(--rose-deep); }
+
+  main {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 52px; padding: 80px 0; text-align: center;
+  }
+  .mark-lg {
+    width: 112px; height: 112px; border-radius: 30px; background: var(--rose);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 14px 34px rgba(184, 121, 127, .28);
+    font: 700 42px/1 Quicksand, sans-serif; letter-spacing: -.02em; color: var(--white);
+  }
+  h1 {
+    margin: 0; max-width: 15ch;
+    font: 700 clamp(40px, 7.4vw, 116px)/.98 Quicksand, sans-serif;
+    letter-spacing: -.035em; color: var(--plum); text-wrap: balance;
+  }
+  .lead {
+    margin: 0; max-width: 44ch;
+    font: 500 clamp(17px, 1.5vw, 22px)/1.6 Quicksand, sans-serif;
+    color: var(--muted); text-wrap: pretty;
+  }
+
+  .cta {
+    display: flex; align-items: center; gap: 10px;
+    padding: 7px 7px 7px 22px; border-radius: 999px;
+    background: var(--white); border: 1px solid var(--line);
+  }
+  .cta-hint { font: 500 16px Quicksand, sans-serif; color: var(--faint); }
+  .cta-button {
+    padding: 14px 26px; border-radius: 999px; background: var(--rose);
+    font: 700 16px Quicksand, sans-serif; color: var(--white);
+    transition: background .18s ease;
+  }
+  .cta-button:hover { background: var(--rose-hover); color: var(--white); }
+
+  footer {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    font: 500 13px "DM Mono", monospace; color: var(--faint);
+  }
+  footer nav { display: flex; gap: 22px; flex-wrap: wrap; }
+  footer a { color: var(--faint); }
+  footer a:hover { color: var(--rose-deep); }
+
+  @media (max-width: 640px) {
+    .page { padding: 24px 20px; }
+    main { gap: 34px; padding: 48px 0; }
+    .tagline { display: none; }
+    .cta { flex-direction: column; align-items: stretch; gap: 12px; padding: 16px; border-radius: 28px; }
+    .cta-hint { text-align: center; }
+    .cta-button { text-align: center; }
+    footer { flex-direction: column; gap: 14px; text-align: center; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1>KipLook</h1>
-  <p class="tagline">keep it pretty</p>
-  <p class="lead">A visual calendar for your outfits. One photo a day, kept on your device
-  and in your own private iCloud.</p>
-  <nav>
-    <a href="privacy.html">Privacy</a>·<a href="support.html">Support</a>
-  </nav>
-</main>
+
+<div class="page">
+
+  <header>
+    <div class="brand">
+      <div class="mark">Kip</div>
+      <span class="tagline">the outfit calendar</span>
+    </div>
+    <a class="nav-link" href="#join">Join the waitlist</a>
+  </header>
+
+  <main>
+    <div class="mark-lg">Kip</div>
+
+    <h1>Your closet has a memory now.</h1>
+
+    <p class="lead">One photo a day. A year of outfits you can actually look back on — even the days you stayed in.</p>
+
+    <a id="join" class="cta" href="mailto:hola@kiplook.com?subject=Early%20access%20to%20KipLook">
+      <span class="cta-hint">hola@kiplook.com</span>
+      <span class="cta-button">Get early access</span>
+    </a>
+  </main>
+
+  <footer>
+    <span>Kip · 2026</span>
+    <nav>
+      <a href="https://instagram.com/kiplook" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:hola@kiplook.com">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+    </nav>
+  </footer>
+
+</div>
+
 </body>
 </html>
